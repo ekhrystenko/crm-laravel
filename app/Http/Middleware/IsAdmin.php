@@ -20,8 +20,9 @@ class IsAdmin
         if (auth()->check() && !auth()->user()->is_admin) {
             return redirect()->route('welcome');
         }
-        if (!auth()->user()->is_admin) {
-            return route('login');
+
+        if (!auth()->check()) {
+            return redirect()->route('login');
         }
 
         return $next($request);
