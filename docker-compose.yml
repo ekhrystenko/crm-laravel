@@ -1,0 +1,66 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: crm
+    container_name: crm-php
+    restart: unless-stopped
+    volumes:
+      - ./docker-files/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./:/var/www/html/
+    networks:
+      - crm
+
+  db:
+    image: mysql:8.0
+    container_name: crm-db
+    command: "--default-authentication-plugin=mysql_native_password"
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 7775:3306
+    environment:
+      MYSQL_DATABASE: crm_laravel
+      MYSQL_ROOT_PASSWORD: test
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./docker-files/mysql/init_db.cnf:/etc/mysql/my.cnf
+    networks:
+      - crm
+
+  nginx:
+    image: nginx
+    container_name: crm-nginx
+    environment:
+      UID_VAR: 1000
+      GID_VAR: 1000
+    restart: unless-stopped
+    ports:
+      - 7777:80
+    volumes:
+      - ./:/var/www/html/
+      - ./docker-files/nginx/:/etc/nginx/conf.d/
+    networks:
+      - crm
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: crm_phpmyadmin
+    links:
+      - db:mysql
+    ports:
+      - "5050:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: zdrte346ESq346
+    networks:
+      - crm
+
+networks:
+  crm:
+    driver: bridge

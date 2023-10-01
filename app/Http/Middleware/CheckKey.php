@@ -23,14 +23,15 @@ class CheckKey extends Middleware
         if (!empty($request->input('token'))) {
             $token = $request->input('token');
         }
+
         if (!empty($request->bearerToken())) {
             $token = $request->bearerToken();
         }
 
-        if ($token != config('api_key.key')) {
+        if (isset($token) && $token == config('api_key.key')) {
+            return $next($request);
+        } else {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-
-        return $next($request);
     }
 }
