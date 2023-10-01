@@ -13,7 +13,13 @@ class ClientCompany extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'client_company';
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 }

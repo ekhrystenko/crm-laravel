@@ -32,7 +32,7 @@
 Клонуємо проєкт в директорію де зберігаються проєкти на ПК:
 <br>git clone https://github.com/ekhrystenko/crm-laravel.git
 <br>Створюємо файл .env на основі файлу .env.example, та 
-використовуємо налаштування для БД докер:
+використовуємо блок налаштувань DOCKER DB SETTINGS, розкоментовуємо його:
 <br>
 <br>#DOCKER DB SETTINGS
 <br>DB_HOST=db
@@ -46,13 +46,15 @@
 <br>Підключаємось до контейнеру бази даних:
 <br>docker-compose exec app bash
 <br>
+<br>Запускаємо:
+<br>composer install
+<br>
 <br>Запускаємо міграції і сіди:
 <br>php artisan migrate --seed
 <br>
-<br>Надаємо права на директорію сторедж:
+<br>Надаємо права на директорію storage і public:
 <br>chmod 777 -R storage/
-<br>Надаємо права на директорію паблік:
-<br>chmod 777 -R storage/
+<br>chmod 777 -R public/
 <br>
 <br>Генеруємо ключ:
 <br>php artisan key:generate
@@ -72,31 +74,31 @@
 <br>Клонуємо проєкт в директорію де зберігаються проєкти на ПК:
 <br>git clone https://github.com/ekhrystenko/crm-laravel.git
 <br>
-<br>Створюємо файл .env на основі файлу .env.example
+<br>Створюємо файл .env на основі файлу .env.example.
 Прописуємо налаштування до БД
 <br>
-<br>Запускаємо composer install
-<br>
-<br>Генеруємо ключ: php artisan key:generate
+<br>Запускаємо:
+<br>composer install
 <br>
 <br>Запускаємо: міграції і сіди:
 <br>php artisan migrate --seed
 <br>
-<br>Надаємо права сторедж:
+<br>Надаємо права на директорію storage i public:
 <br>chmod 777 -R storage/
-<br>Надаємо права на паблік:
-<br>chmod 777 -R storage/
+<br>chmod 777 -R public/
 <br>
 <br>Генеруємо ключ:
 <br>php artisan key:generate
 <br>
 <br>Чистимо кеш:
 <br>php artisan config:clear && php artisan view:clear && php artisan cache:clear && php artisan route:clear
+<br>
+<br>Система буде доступна по налаштованому локальному домену.
 
 ## API запити
 
-<br>http://домен/api/v1/companies - повертає список компаній з клієнтами
-<br>http://домен/api/v1/clients/{company} - де {company} - це id компанії, 
+<br>1. http://домен/api/v1/companies - повертає список компаній з клієнтами
+<br>2. http://домен/api/v1/clients/{company} - де {company} - це id компанії, 
 повертає список клієнтів компанії.
-<br>http://домен/api/v1/companies/{client} - де {client} - це id клієнта,
+<br>3. http://домен/api/v1/companies/{client} - де {client} - це id клієнта,
 повертає список компаній, пов'язаних з клієнтом

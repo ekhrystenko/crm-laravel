@@ -4,48 +4,40 @@
         <h3 class="navbar-brand">Edit Company</h3>
     </nav>
     <form method="POST" action="{{ route('companies.update', $company->id) }}">
-    @csrf
-    @method('PUT')
+        @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name" value="{{ $company->name }}">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                   placeholder="Name" value="{{ $company->name }}">
             @error('name')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" value="{{ $company->email }}">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                   placeholder="Email" value="{{ $company->email }}">
             @error('email')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="foundation_year">Foundation Year</label>
-            <input type="date" class="form-control @error('foundation_year') is-invalid @enderror" id="foundation_year" name="foundation_year" placeholder="Year" value="{{ $company->foundation_year->format('Y-m-d') }}">
+            <input type="date" class="form-control @error('foundation_year') is-invalid @enderror" id="foundation_year"
+                   name="foundation_year" placeholder="Year" value="{{ $company->foundation_year->format('Y-m-d') }}">
             @error('foundation_year')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description">{{ $company->description }}</textarea>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
+                      name="description">{{ $company->description }}</textarea>
             @error('description')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-
-{{--        <div class="form-group">--}}
-{{--            <label for="clients">Clients</label>--}}
-{{--            <select class="form-select form-control form-select-lg mb-3" name="clients[]" multiple style="height: 350px;">--}}
-{{--                @foreach($clients as $client)--}}
-{{--                    <option value="{{ $client->id }}" {{ in_array($client->id, $selectedClients) ? 'selected' : '' }}>--}}
-{{--                        {{ $client->name }}--}}
-{{--                    </option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--        </div>--}}
         <button type="submit" class="btn btn-outline-success mb-3 w-25">Update</button>
     </form>
-
 @endsection

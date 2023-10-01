@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\AuthenticationException;
 use Closure;
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 use Illuminate\Http\Request;

@@ -23,7 +23,7 @@ class GeneralApiController
     {
         $companies = Company::with('clients')->paginate(10);
 
-        if ($companies->isEmpty()){
+        if ($companies->isEmpty()) {
             return response()->json(['message' => 'Companies not found'], 404);
         }
         return CompaniesResource::collection($companies);

@@ -4,54 +4,41 @@
         <h3 class="navbar-brand">Create new company</h3>
     </nav>
     <div>
-{{--        @if ($errors->any())--}}
-{{--            <div class="alert alert-danger">--}}
-{{--                <ul>--}}
-{{--                    @foreach ($errors->all() as $error)--}}
-{{--                        <li>{{ $error }}</li>--}}
-{{--                    @endforeach--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        @endif--}}
     </div>
     <form method="POST" action="{{ route('companies.store') }}">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                   placeholder="Name" value="{{ old('name') }}">
             @error('name')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                   placeholder="Email" value="{{ old('email') }}">
             @error('email')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="foundation_year">Foundation Year</label>
-            <input type="date" class="form-control @error('foundation_year') is-invalid @enderror" id="foundation_year" name="foundation_year" placeholder="Year" value="{{ old('foundation_year') }}">
+            <input type="date" class="form-control @error('foundation_year') is-invalid @enderror" id="foundation_year"
+                   name="foundation_year" placeholder="Year" value="{{ old('foundation_year') }}">
             @error('foundation_year')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description">{{ old('description') }}</textarea>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
+                      name="description">{{ old('description') }}</textarea>
             @error('description')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-{{--        <div class="form-group">--}}
-{{--            <label for="clients">Clients</label>--}}
-{{--            <select class="form-select form-control form-select-lg mb-3" name="clients[]" multiple style="height: 350px;">--}}
-{{--                @foreach($clients as $client)--}}
-{{--                    <option value="{{ $client->id }}">{{ $client->name }}</option>--}}
-{{--                @endforeach--}}
-{{--            </select>--}}
-{{--        </div>--}}
         <button type="submit" class="btn btn-outline-success mb-3 w-25">Submit</button>
     </form>
 @endsection
