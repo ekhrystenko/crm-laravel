@@ -1,6 +1,6 @@
 .env
 .idea/
-/data/
+/data
 /vendor
 /storage/logs/laravel.log
 /node_modules
